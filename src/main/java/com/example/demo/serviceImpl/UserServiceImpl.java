@@ -10,14 +10,53 @@ import com.example.demo.service.UserService;
 @Service
 public class UserServiceImpl implements UserService
 {
-	
-	List<User> a1=new ArrayList<>();
+
+	List<User> al=new ArrayList<>();
 
 	@Override
 	public User createUser(User user) 
 	{
 		System.out.println("Service Class working");
-		a1.add(user);
+		al.add(user);
 		return user;
 	}
+	
+	@Override
+	public List<User> getAllUsers()
+	{
+		
+		return al;	
+	}
+	
+	@Override
+	public User updateUser(String id, User user)
+	{
+		for(User u:al)
+		{
+			if(u.getId().equals(id))
+			{
+				u.setName(user.getName());
+				u.setUserName(user.getUserName());
+				return u;
+			}
+			
+		}
+		return null;
+	}
+	
+	
+	public User deleteUser(String id)
+	{
+		for(User u:al)
+		{
+			if(u.getId().equals(id))
+			{
+				al.remove(u);
+				return u;
+			}
+			
+		}
+		return null;
+	}
+	
 }
