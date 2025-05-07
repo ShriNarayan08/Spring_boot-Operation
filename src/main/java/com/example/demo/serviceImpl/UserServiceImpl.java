@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.User;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.service.UserService;
 
 @Service
@@ -41,7 +42,7 @@ public class UserServiceImpl implements UserService
 			}
 			
 		}
-		return null;
+		throw new UserNotFoundException("InCorrect id, Enter Correct User Id");
 	}
 	
 	
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService
 			}
 			
 		}
-		return null;
+		throw new UserNotFoundException("InCorrect id, Enter Correct User Id");
 	}
 	
 }
