@@ -1,10 +1,24 @@
 package com.example.demo.entity;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity; 
+import jakarta.persistence.Id;
+
+@Entity
 public class User 
 {
+	@Id
 	private String id;
+	
+	@Column
 	private String name;
+	
+	@Column
 	private String userName;
+	
+	@Column
 	private String password;
 	
 	
@@ -13,7 +27,11 @@ public class User
 	{
 		return "User [id=" + id + ",name=" + name + ", userName=" + userName + ", password=" + password + "]";
 	}
-	
+		
+	public User()
+	{
+		
+	}
 	public User(String id,String name, String userName, String password) 
 	{
 		super();
@@ -52,7 +70,7 @@ public class User
 	public String getPassword(){
 		return password;
 	}
-	
+
 	
 	public void setpassword(String password){
 		this.password=password;

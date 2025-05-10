@@ -1,61 +1,44 @@
 package com.example.demo.serviceImpl;
-import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.User;
 import com.example.demo.exception.UserNotFoundException;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService
 {
+	@Autowired
+	private UserRepo userRepo;
+	
 
-	List<User> al=new ArrayList<>();
-
-	@Override
 	public User createUser(User user) 
 	{
-		System.out.println("Service Class working");
-		al.add(user);
-		return user;
+		return userRepo.save(user);
 	}
 	
 	@Override
-	public List<User> getAllUsers()
-	{
-		
-		return al;	
+	public List<User> getAllUsers(){	
+		return userRepo.findAll();	
 	}
 	
 	@Override
 	public User updateUser(String id, User user)
 	{
-		for(User u:al)
-		{
-			if(u.getId().equals(id))
-			{
-				u.setName(user.getName());
-				u.setUserName(user.getUserName());
-				return u;
-			}
-			
-		}
 		throw new UserNotFoundException("InCorrect id, Enter Correct User Id");
 	}
 	
 	
 	public User deleteUser(String id)
 	{
-		for(User u:al)
+		User user = (User) userRepo.findById(id).get();
+		if(user != null)
 		{
-			if(u.getId().equals(id))
-			{
-				al.remove(u);
-				return u;
-			}
-			
+			userRepo.delete(user);
+			return user;
 		}
 		throw new UserNotFoundException("InCorrect id, Enter Correct User Id");
 	}

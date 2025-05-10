@@ -21,7 +21,7 @@ public class UserController
 	public ResponseEntity<User> createUser(@RequestBody User user){
 
 		user= userService.createUser(user);
-		return new ResponseEntity<>(user , HttpStatus.ACCEPTED);
+		return new ResponseEntity<User>(user , HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/all")
