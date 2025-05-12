@@ -17,4 +17,6 @@ public interface UserService
 	User updateUser(String id , User user);
 	
 	User deleteUser(String id);
+
+	List<User> getUserByName(String name);
 }

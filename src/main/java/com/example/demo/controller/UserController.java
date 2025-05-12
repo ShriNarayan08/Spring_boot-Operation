@@ -18,15 +18,13 @@ public class UserController
 	private UserServiceImpl userService;
 
 	@PostMapping("/register")
-	public ResponseEntity<User> createUser(@RequestBody User user){
-
-		user= userService.createUser(user);
-		return new ResponseEntity<User>(user , HttpStatus.ACCEPTED);
+	public User createUser(@RequestBody User user){
+	return userService.createUser(user);
+		
 	}
 
 	@GetMapping("/all")
 	public List<User> getAllUsers(){
-
 		return userService.getAllUsers();
 	}
 
@@ -41,10 +39,16 @@ public class UserController
 		
 		return userService.deleteUser(id);
 	}
+	
+	@GetMapping("/find")
+	public List<User> findUser(@RequestParam String name){
+		return userService.getUserByName(name);		
+	}
+	
+	
 
 	@ExceptionHandler(UserNotFoundException.class)
 	public String handleUserNotFoundException(UserNotFoundException ex) {
-		
 		return "Please Enter valid User Id";
 	}
 }

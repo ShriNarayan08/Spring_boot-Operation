@@ -14,10 +14,11 @@ public class GlobalExceptionHandler {
 	{
 		return new ResponseStatus(200,ex.getMessage());
 	}
+
 	@ExceptionHandler(NoResourceFoundException.class)
 	public String demo(NoResourceFoundException e)
 	{
-		return "Something went wrong";
-	}
+		return "Galat hai bhaiii ";
+}
 
 }
