@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(NoResourceFoundException.class)
 	public String demo(NoResourceFoundException e)
 	{
-		return "Galat hai bhaiii ";
-}
+		return e.getMessage();
+	}
 
 }

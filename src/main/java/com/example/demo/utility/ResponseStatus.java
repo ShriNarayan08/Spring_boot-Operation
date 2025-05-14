@@ -11,7 +11,6 @@ public class ResponseStatus {
 		super();
 		this.errorCode=errorCode;
 		this.errorMessage=errorMessage;
-		
 	}
 
 	public int getErrorCode() {
